@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript</title>
+    <style>
+        :root {
+            --primary-color: #23013a;
+            --secondary-color: #9446ec;
+        }
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: var(--primary-color);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>Olá, Mundo!</h1>
+    <p>Já me livrei da maldição!</p>
+
+    <script>
+        var n1 = Number(window.prompt("digite um número"));// string
+        var n2 = Number(window.prompt("digite outro número"));// string
+        var s = n1 + n2;// concatenação de string
+        window.alert(`A soma entre ${n1} e ${n2} é ${s}`);// concatenação de string
+            /* (number + number) = para adição de números
+           (string + string) = para concatenação de strings
+           (number + string) = para concatenação de string */
+    </script>
+</body>
+</html>
