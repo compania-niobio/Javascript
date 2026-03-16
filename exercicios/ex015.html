@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../midia/Favicon/favicon.ico" type="image/x-icon">
     <title>Dia e horas </title>
     <style>
         * {
@@ -22,7 +23,7 @@
             text-align: center;
         }
          header > h1 {
-             font: 900 100px Arial, Helvetica, sans-sarif;
+         font: 900 100px Arial, Helvetica, sans-sarif;
          }
         section{
             font: 500 20px Arial, Helvetica, sans-sarif;
@@ -38,7 +39,6 @@
             color: white;
             text-align: center;
             padding: 10px;
-            position: fixed;
             width: 100%;
             bottom: 0;
         }
@@ -47,13 +47,16 @@
         }
     </style>
 </head>
-<body>
+<body onload="carregar()">
     <header>
         <h1>Dia e Horas</h1>
     </header>
     <section>
         <div id="msg">
             Aqui vai aparecer a mensagem...
+        </div>
+        <div id="img">
+            <img id="imagem" src="../midia/fotos/logo_sem_fundo/3.png" alt="foto_de_manhã">
         </div>
     </section>
     <footer>

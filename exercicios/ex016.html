@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../midia/favicon/favicon.ico" type="image/x-icon">
+    <title>Vou descobrir sua idade</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Fjalla+One&display=swap');/*Fonte do site */
+
+        :root{
+          --font01:'Bodoni Moda', serif;
+          --font02:'Fjalla One', sans-seri;
+            }
+        :root{
+           --01color:#38385f;
+           --02color:#1800ad;
+           --03color:#6d62b5;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            font-family: var(--font02);
+            font-weight: 500;
+            text-align: center;
+        }
+
+        h1{
+            font:900 6vw var(--font02);
+            color: white;
+            text-align: center;
+            padding: 4vh;
+            margin: 5vw;
+            border-radius: 10vw;
+            box-shadow:  5em;
+            background-color: #494980;
+        }
+
+        div  {
+            
+            background-color: #11124d;
+            color: white;
+            border: 8vw;
+            padding: 2vh;
+        }
+
+        div > p {
+            padding: 2vh;
+            font:500 30px var(--font02);
+        }
+
+        div > p > input#txtano {
+            font:bold var(--font02);
+            border: 2px solid white; 
+            margin: 2vw;
+            border-radius: 10px;
+        }
+
+        div > p > input#mas{
+            margin: 0.5vw;
+        }
+        div > p > input#fem{
+            margin: 0.5vw;
+        }
+        div > p > input {
+            font: bold 20px var(--font02);
+            border-radius: 10px;
+            border: 10px solid white;
+            background-color: white;
+        }
+        div#res{
+            font: 600 20px var(--font02);
+            text-align: center;
+        }
+        footer{
+            padding: 2vh;
+            margin: 3vw;
+            font: bold 25px var(--font02);
+        }
+    </style>
+    <script>
+        function verificar() {
+            var data = new Date()
+            var ano = data.getFullYear()
+            var fano = document.getElementById('txtano')
+            var res = document.querySelector('div#res')
+            if(fano.value.length == 0 || fano.value > ano) {
+                window.alert( ' [ERRO] Verifique os dados e tente novament!')   
+        } else {
+               var fsex = document.getElementsByName('radsex')
+               var idade = ano - Number(fano.value)
+               var genero = ''
+               var img = document.createElement('img')
+               img.setAttribute('id', 'foto')
+        if(fsex[0].checked) {
+                genero = 'Homem'
+                if (idade >=0 && idade< 10) {
+                    //Criança
+                    img.setAttribute('src', '1_m.png')
+                }else if (idade < 21) {
+                    //Jovem
+                    img.setAttribute('src', '2_m.png')
+                }else if (idade< 60) {
+                    //Adulto
+                    img.setAttribute('src','3_m.png')
+                }else {
+                    //Idoso
+                    img.setAttribute('src','4_m.png')
+                }
+         }else if (fsex[1].checked) {
+                genero = 'Mulher'
+                 if (idade >=0 && idade< 10) {
+                    //Criança
+                    img.setAttribute('src', '1_f.png')
+                }else if (idade < 21) {
+                    //Jovem
+                    img.setAttribute('src', '2_f.png')
+                }else if (idade< 60) {
+                    //Adulto
+                    img.setAttribute('src', '3_f.png')
+                }else {
+                    //Idoso
+                    img.setAttribute('src', '4_f.png')
+                }
+               }
+               
+
+            }
+            res.style.textAlign = 'center'
+            res.innerHTML = `Detectamos ${genero}de${idade} anos `
+            res.appendChild(img)
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Verificador de Idade</h1>
+    </header>
+    <section>
+        <div>
+            <p>
+                Ano de Nascimento
+                <input type="number" name="txtano" id="txtano" min="0">
+            </p>
+            <p>
+                Sexo
+                <input type="radio" name="radsex" id="mas" checked>
+                <label for="mas">Masculino</label>
+                <input type="radio" name="radsex" id="fem">
+                <label for="fem">Feminino</label>
+            </p>
+            <p>
+                <input type="button" value="Verificar" onclick="verificar()">
+            </p>
+        </div>
+        <div id="res">
+            Preencha os dados acima para ver o resultado!
+        </div>
+    </section>
+    <footer>
+        <p>&copy;Compania Niobio</p>
+    </footer>
+</body>
+</html>
