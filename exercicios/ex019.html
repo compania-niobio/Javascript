@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="Pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../midia/favicon/favicon.ico" type="image/x-icon">
+    <title>Calculando</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #ffffff;
+            color: #000000;
+        }
+        header{
+            background-color: #242424;
+            color: #fff;
+            text-align: center;
+            padding: 2vh;
+            font: 900 2.2vw Arial, Helvetica, sans-serif;
+        }
+        section{
+            padding: 5vh;
+            margin: 2vw;
+            background-color: #f0f0f0;
+            border-radius: 8px;
+            text-align: center;
+            font: 600 1.8vw Arial, Helvetica, sans-serif;
+        }
+        footer{
+            margin: 1vw;
+            border-radius: 8px;
+            background-color: #242424;
+            color: #fff;
+            text-align: center;
+            padding: 1vh;
+            font: 400 1vw Arial, Helvetica, sans-serif;
+        }
+        input[type="number"]{
+            width: 20vw;
+            padding: 0.5vh;
+            font-size: 1.5vw;
+            border: 1px solid #ccc;
+            border-radius: 50px;
+            overflow: hidden;
+        }
+        input[type="button"]{
+            padding: 1vh 2vw;
+            font-size: 1.5vw;
+            border: none;
+            border-radius: 20px;
+            background-color: #013164;
+            color: #fff;
+            cursor: pointer;
+            margin-left: 1vw;
+        }
+        #finalizar{
+            background-color: #9c0202;
+            border: 2vw;
+        }
+        #finalizar:hover{
+            background-color: #ff0000;
+        }
+        #adicionar:hover{
+            background-color: #037dff;
+        }
+        select#flista{
+            width: 30vw;
+            height: 20vh;
+            padding: 0.5vh;
+            font-size: 1.5vw;
+            border: 1px solid #ccc;
+            border-radius: 30px;
+            overflow: hidden;
+            margin: 2vw;
+        }
+        #resultado{
+            margin: 2vw;
+            padding: 1vh;
+            background-color: #e0e0e0;
+            border-radius: 77px;
+            text-align: center;
+            font: 500 1.5vw Arial, Helvetica, sans-serif;
+        }
+        #limpar{
+            background-color: #093d02;
+            padding: 3vh;
+            margin: 2vw;
+            text-align: center;
+        }
+        #limpar:hover{
+            background-color: #0a9703;
+        }
+        </style>
+</head>
+<body>
+    <header>
+        <h1>Calculando</h1>
+    </header>
+    <section>
+        <div>
+            Numero entre (1 a 100):
+            <input type="number" name="fnum" id="fnum">
+            <input type="button" value="Adicionar" id="adicionar" onclick="adicionar()">
+            <br><br>
+            <select name="flista" id="flista" size="10"></select>
+            <br><input type="button" value="Finalizar" id="finalizar" onclick="finalizar()">
+            <br><input type="button" value="Limpar" id="limpar" onclick="window.location.reload()"></i>
+        </div>
+        <div id="resultado">
+        </div>
+    </section>
+    <footer>
+        <p>Desenvolvido por <strong>Niobio</strong></p>
+    </footer>
+    <script>
+        let num = document.querySelector('input#fnum')
+        let lista = document.querySelector('select#flista')
+        let res = document.querySelector('div#resultado')
+        let valores = []
+
+        function isNumero(n) {
+            if (Number(n) >= 1 && Number(n) <= 100) {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        function inLista(n, l) {
+            if (l.indexOf(Number(n)) != -1) {
+                return true
+            } else {
+                return false
+            }
+        }
+       function adicionar(){
+        if(isNumero(num.value) && !inLista(num.value, valores)){
+            valores.push(Number(num.value))
+            let item = document.createElement('option')
+            item.text = `Valor ${num.value} adicionado.`
+            lista.appendChild(item)
+            res.innerHTML = ''
+        } else {
+            window.alert('Valor inválido ou já encontrado na lista')
+        }
+        num.value = ''
+        num.focus()
+    }
+
+    function finalizar(){
+        if(valores.length == 0){
+            window.alert('Adicione valores antes de finalizar!')
+        } else {
+            let tot = valores.length
+            let maior = valores[0]
+            let menor = valores[0]
+            let soma = 0
+            let media = 0
+            for(let pos in valores){
+                soma += valores[pos]
+                if(valores[pos] > maior)
+                    maior = valores[pos]
+                if(valores[pos] < menor)
+                    menor = valores[pos]
+            }
+            media = soma / tot
+            res.innerHTML = ''
+            res.innerHTML += `<p>Ao todo, temos ${tot} números cadastrados.</p>`
+            res.innerHTML += `<p>O maior valor informado foi ${maior}.</p>`
+            res.innerHTML += `<p>O menor valor informado foi ${menor}.</p>`
+            res.innerHTML += `<p>Somando todos os valores, temos ${soma}.</p>`
+            res.innerHTML += `<p>A média dos valores digitados é ${media}.</p>`
+        }
+    }
+    //!= não, exemplo !inlista = não encontrado na lista.
+    //res.innerHtml = '' limpa o resultado para não ficar acumulando os resultados anteriores.
+
+    </script>
+</body>
+</html>
